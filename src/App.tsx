@@ -3,9 +3,19 @@ import { ToastContainer } from 'react-toastify';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+} from '@apollo/client';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
-import NowWhat from './components/NowWhat';
+import MainComponent from './components/MainComponent';
+
+const client = new ApolloClient({
+  uri: 'https://react.eogresources.com/graphql',
+  cache: new InMemoryCache(),
+});
 
 const theme = createTheme({
   palette: {
@@ -22,14 +32,16 @@ const theme = createTheme({
 });
 
 const App = () => (
-  <MuiThemeProvider theme={theme}>
-    <CssBaseline />
-    <Wrapper>
-      <Header />
-      <NowWhat />
-      <ToastContainer />
-    </Wrapper>
-  </MuiThemeProvider>
+  <ApolloProvider client={client}>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Wrapper>
+        <Header />
+        <MainComponent />
+        <ToastContainer />
+      </Wrapper>
+    </MuiThemeProvider>
+  </ApolloProvider>
 );
 
 export default App;

@@ -6,6 +6,7 @@ import {
   gql,
   InMemoryCache,
 } from '@apollo/client';
+import MetricSelector from './MetricSelector';
 
 const client = new ApolloClient({
   uri: 'https://react.eogresources.com/graphql',
@@ -13,21 +14,21 @@ const client = new ApolloClient({
 });
 
 const Metrics = () => {
+  const [availableMetrics, setAvailableMetrics] = React.useState([]);
   const query = gql`
     query  {
       getMetrics
       }
   `;
-  const { data } = useQuery<any>(query);
+  const { data } = useQuery(query);
   const getMetrics = () => {
-    let returnedMetrics = '';
-    returnedMetrics = data;
-    console.log('these are the metrics', returnedMetrics);
+    setAvailableMetrics(data.getMetrics);
   };
   return (
     <div>
       <ApolloProvider client={client}>
         <input type='button' value='testQuery' onClick={getMetrics} />
+        <MetricSelector metricsAvailable={availableMetrics} />
       </ApolloProvider>
     </div>
   );

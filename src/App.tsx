@@ -8,6 +8,8 @@ import {
   ApolloProvider,
   InMemoryCache,
 } from '@apollo/client';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 import MainComponent from './components/MainComponent';
@@ -32,16 +34,18 @@ const theme = createTheme({
 });
 
 const App = () => (
-  <ApolloProvider client={client}>
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Wrapper>
-        <Header />
-        <MainComponent />
-        <ToastContainer />
-      </Wrapper>
-    </MuiThemeProvider>
-  </ApolloProvider>
+  <Provider store={store}>
+    <ApolloProvider client={client}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <Wrapper>
+          <Header />
+          <MainComponent />
+          <ToastContainer />
+        </Wrapper>
+      </MuiThemeProvider>
+    </ApolloProvider>
+  </Provider>
 );
 
 export default App;

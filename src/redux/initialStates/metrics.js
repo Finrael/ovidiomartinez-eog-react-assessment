@@ -1,4 +1,4 @@
-export const initialState = {
+const initialMetrics = {
   available: [],
   chosen: [],
   metrics: [],
@@ -6,3 +6,5 @@ export const initialState = {
   lastUpdate: {},
   chartData: [],
 };
+
+export default initialMetrics;

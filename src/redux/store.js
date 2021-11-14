@@ -1,9 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import metricSlice from './Slices/mainSlice';
+import metricSlicePart from './Slices/mainSlice';
+import { SagasMiddleware } from './Sagas';
+import { rootSaga } from './Sagas/rootSagas';
+// import initialMetrics from './initialStates/metrics';
 
 export const store = configureStore({
   reducer: {
-    metrics: metricSlice,
+    metrics: metricSlicePart,
   },
-//   middleware: [sagas.sagaMiddleware],
+  middleware: [SagasMiddleware],
 });
+
+SagasMiddleware.run(rootSaga);

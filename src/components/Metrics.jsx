@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ApolloClient,
   ApolloProvider,
-  useQuery,
-  gql,
+  // useQuery,
+  // gql,
   InMemoryCache,
 } from '@apollo/client';
+import { useDispatch, useSelector } from 'react-redux';
+// import { getMetricsAction } from '../redux/Slices/mainSlice';
+import { getMetricAction } from '../redux/Sagas/Saga';
 import MetricSelector from './MetricSelector';
 
 const client = new ApolloClient({
@@ -15,20 +18,35 @@ const client = new ApolloClient({
 
 const Metrics = () => {
   const [availableMetrics, setAvailableMetrics] = React.useState([]);
-  const query = gql`
-    query  {
-      getMetrics
-      }
-  `;
-  const { data } = useQuery(query);
+  const dispatch = useDispatch();
+
+  // const query = gql`
+  //   query  {
+  //     getMetrics
+  //     }
+  // `;
+  // const { data } = useQuery(query);
   const getMetrics = () => {
-    setAvailableMetrics(data.getMetrics);
+    setAvailableMetrics(availableMetrics);
   };
+  useEffect(() => {
+    // getMetrics();
+    dispatch(getMetricAction());
+  });
+  const metricsValue = useSelector((state) => {
+    console.log('ESTE ES EL ESTADO', state);
+    return state.metrics.metrics;
+  });
+  console.log('RE', metricsValue);
+  // getMetrics(metricsValue);
+  // useEffect(() => {
+  //   getMetrics(metricsValue);
+  // }, [metricsValue]);
   return (
     <div>
       <ApolloProvider client={client}>
         <input type='button' value='testQuery' onClick={getMetrics} />
-        <MetricSelector metricsAvailable={availableMetrics} />
+        <MetricSelector metricsAvailable={metricsValue} />
       </ApolloProvider>
     </div>
   );

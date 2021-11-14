@@ -2,10 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import initialMetrics from '../initialStates/metrics';
 
 export const metricSlice = createSlice({
-  name: 'metricsSlice',
-  initialMetrics,
+  name: 'metrics',
+  initialState: initialMetrics,
   reducers: {
-    getMetrics: (state, action) => {
+    getMetricsAction: (state, action) => {
+      state.metrics = action.payload;
+    },
+    setMetricsAction: (state, action) => {
       state.metrics = action.payload;
     },
     removeMetric: (state, action) => {
@@ -21,4 +24,7 @@ export const metricSlice = createSlice({
   },
 });
 
-export const { getMetricsAction, removeMetric, addMetric } = metricSlice.actions;
+export const {
+  getMetricsAction, removeMetric, addMetric, setMetricsAction,
+} = metricSlice.actions;
+export default metricSlice.reducer;

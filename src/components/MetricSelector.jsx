@@ -7,6 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import { useDispatch } from 'react-redux';
+import { getChosenMetrics } from '../redux/Slices/mainSlice';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -30,6 +32,7 @@ function getStyles(name, metricName, theme) {
 
 const MetricSelector = ({ metricsAvailable }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [metricName, setmetricName] = React.useState(metricsAvailable);
 
   const handleChange = (event) => {
@@ -39,7 +42,7 @@ const MetricSelector = ({ metricsAvailable }) => {
     setmetricName(
       typeof value === 'string' ? value.split(',') : value,
     );
-    console.log('this is the string', metricName);
+    dispatch(getChosenMetrics(metricName));
   };
 
   return (

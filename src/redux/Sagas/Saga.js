@@ -5,7 +5,6 @@ import { createAction } from '@reduxjs/toolkit';
 import { getMetricsAction, setMetricsAction } from '../Slices/mainSlice';
 import { client } from '../../GraphQL/client';
 import getMetricsQuery from '../../GraphQL/queries/getMetricsQuery';
-// import initialMetrics from '../initialStates/metrics';
 
 export const SAGA_METRICS = 'saga/metrics';
 

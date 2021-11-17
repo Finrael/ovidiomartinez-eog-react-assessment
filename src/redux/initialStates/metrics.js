@@ -1,11 +1,12 @@
 const initialMetrics = {
   available: [],
-  chosenMetric: ['waterTemp'],
+  chosenMetric: [],
   metrics: [],
   realTime: {},
   lastUpdate: {},
   chartData: [],
   chartValue: [],
+  chartMultipleData: [],
 };
 
 export default initialMetrics;

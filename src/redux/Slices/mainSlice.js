@@ -25,13 +25,16 @@ export const metricSlice = createSlice({
     },
     getChosenMetrics: (state, action) => {
       state.chosenMetric = action.payload;
-      console.log('THIS IS THE CHOSEN ONE', state.chosenMetric);
+    },
+    getMultipleValuesAction: (state, action) => {
+      state.chartMultipleData = action.payload;
+      // console.log('multiple char data', state.chartMultipleData);
     },
   },
 });
 
 export const {
   getMetricsAction, removeMetric, addMetric, setMetricsAction,
-  getValuesAction, getChosenMetrics,
+  getValuesAction, getChosenMetrics, getMultipleValuesAction,
 } = metricSlice.actions;
 export default metricSlice.reducer;

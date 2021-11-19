@@ -13,12 +13,8 @@ export const SAGA_MULTI_MEASUREMENTS = 'saga/multi_measurements';
 export const getMultiMeasurementsAction = createAction(SAGA_MULTI_MEASUREMENTS);
 
 export function* getMultipleMeasurementSaga(param1) {
-  // console.log('param1', param1);
-  // console.log('para2', para2);
   try {
     const currentValue = param1.payload;
-    // yield select((state) => state.metrics.chosenMetric);
-    // console.log('this is the current value', currentValue);
     const heartBeat = yield call(client.query, { query: heartBeatQuery });
     const res = yield call(client.query, {
       query: getMultipleMeasurementsQuery,
@@ -30,7 +26,6 @@ export function* getMultipleMeasurementSaga(param1) {
         })),
       },
     });
-    // console.log('MULTIPLE RESPONSE', res.data);
     yield put(getMultipleValuesAction(res.data.getMultipleMeasurements));
   } catch (e) {
     yield put(getMultipleValuesAction([]));

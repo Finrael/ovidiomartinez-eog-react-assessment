@@ -9,10 +9,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import { useDispatch } from 'react-redux';
+// import { useSubscription } from '@apollo/client';
 import {
   getChosenMetrics,
 } from '../redux/Slices/mainSlice';
 import { getMultiMeasurementsAction } from '../redux/Sagas/getMultipleValuesSaga';
+import { subscriptionAction } from '../redux/Sagas/subscriptionSaga';
+// import subsQuery from '../GraphQL/queries/subscriptionQuery';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -50,8 +53,10 @@ const MetricSelector = ({ metricsAvailable }) => {
   };
   useEffect(() => {
     dispatch(getMultiMeasurementsAction(metricName));
+    dispatch(subscriptionAction());
   }, [metricName]);
-
+  // const { data } = useSubscription(subsQuery);
+  // console.log('SUIBS ', data);
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>

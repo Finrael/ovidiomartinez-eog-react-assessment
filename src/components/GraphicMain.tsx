@@ -5,7 +5,6 @@ import DataDisplay from './MainDataDisplay';
 
 const GraphicMain = () => (
   <div>
-    HELLO GRAPHIC
     <Metrics />
     <DataDisplay metricName='Wather' currentValue='19.20' />
     <GraphicComponent />

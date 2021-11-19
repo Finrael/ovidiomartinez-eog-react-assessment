@@ -3,21 +3,13 @@ import { ToastContainer } from 'react-toastify';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-} from '@apollo/client';
 import { Provider } from 'react-redux';
+import { ApolloProvider } from '@apollo/client';
 import { store } from './redux/store';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 import MainComponent from './components/MainComponent';
-
-const client = new ApolloClient({
-  uri: 'https://react.eogresources.com/graphql',
-  cache: new InMemoryCache(),
-});
+import { client } from './GraphQL/client';
 
 const theme = createTheme({
   palette: {

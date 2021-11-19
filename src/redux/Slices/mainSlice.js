@@ -28,7 +28,6 @@ export const metricSlice = createSlice({
     },
     getMultipleValuesAction: (state, action) => {
       state.chartMultipleData = action.payload;
-      // console.log('multiple char data', state.chartMultipleData);
     },
   },
 });

@@ -14,11 +14,7 @@ const client = new ApolloClient({
 });
 
 const Metrics = () => {
-  const [availableMetrics, setAvailableMetrics] = React.useState([]);
   const dispatch = useDispatch();
-  const getMetrics = () => {
-    setAvailableMetrics(availableMetrics);
-  };
   useEffect(() => {
     dispatch(getMetricAction());
   });
@@ -26,7 +22,6 @@ const Metrics = () => {
   return (
     <div>
       <ApolloProvider client={client}>
-        <input type='button' value='testQuery' onClick={getMetrics} />
         <MetricSelector metricsAvailable={metricsValue} />
       </ApolloProvider>
     </div>

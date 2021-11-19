@@ -29,11 +29,15 @@ export const metricSlice = createSlice({
     getMultipleValuesAction: (state, action) => {
       state.chartMultipleData = action.payload;
     },
+    getRealTimeAction: (state, action) => {
+      state.realTime = action.payload;
+    },
   },
 });
 
 export const {
   getMetricsAction, removeMetric, addMetric, setMetricsAction,
   getValuesAction, getChosenMetrics, getMultipleValuesAction,
+  getRealTimeAction,
 } = metricSlice.actions;
 export default metricSlice.reducer;

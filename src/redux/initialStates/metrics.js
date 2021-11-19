@@ -2,7 +2,7 @@ const initialMetrics = {
   available: [],
   chosenMetric: [],
   metrics: [],
-  realTime: {},
+  realTime: [],
   lastUpdate: {},
   chartData: [],
   chartValue: [],

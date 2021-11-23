@@ -9,7 +9,6 @@ const GraphicMain = () => {
   const [realTimeValues, setRealTimeValues] = useState([]);
   useEffect(() => {
     setRealTimeValues(graphicValues.metrics.realTime);
-    console.log('graphicValues realtime', graphicValues.metrics.realTime);
   }, [graphicValues.metrics.realTime]);
 
   return (

@@ -47,7 +47,7 @@ const MetricSelector = ({ metricsAvailable }) => {
     setmetricName(
       typeof value === 'string' ? value.split(',') : value,
     );
-    dispatch(getChosenMetrics(metricName));
+    dispatch(getChosenMetrics(typeof value === 'string' ? value.split(',') : value));
   };
   useEffect(() => {
     dispatch(subscriptionAction());
